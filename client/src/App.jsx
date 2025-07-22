@@ -3,6 +3,7 @@ import Lenis from '@studio-freight/lenis'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
+import Projects from './components/Projects'
 
 const App = () => {
 
@@ -30,6 +31,7 @@ const App = () => {
       <Navbar/>
       <Hero/>
       <About/>
+      <Projects/>
     </div>
   )
 }
