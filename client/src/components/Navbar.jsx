@@ -1,29 +1,32 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 import { motion } from "motion/react";
+import Lenis from '@studio-freight/lenis'
+
+const lenis = new Lenis()
 
 function Navigation() {
+
+  const handleClick = (e, id) => {
+    e.preventDefault()
+    const target = document.querySelector(id)
+    if (target && lenis) {
+      lenis.scrollTo(target, { offset: -80 }) // adjust -80 to your navbar height
+    }
+  }
+
   return (
     <ul className="nav-ul">
       <li className="nav-li">
-        <Link className="nav-link" to="#home">
-          Home
-        </Link>
+        <a className="nav-link" href="#home" onClick={(e) => handleClick(e, '#home')}>Home</a>
       </li>
       <li className="nav-li">
-        <Link className="nav-link" to="#about">
-          About
-        </Link>
+        <a className="nav-link" href="#about" onClick={(e) => handleClick(e, '#about')}>About</a>
       </li>
       <li className="nav-li">
-        <Link className="nav-link" to="#work">
-          Work
-        </Link>
+        <a className="nav-link" href="#work" onClick={(e) => handleClick(e, '#work')}>Work</a>
       </li>
       <li className="nav-li">
-        <Link className="nav-link" to="#contact">
-          Contact
-        </Link>
+        <a className="nav-link" href="#contact" onClick={(e) => handleClick(e, '#contact')}>Contact</a>
       </li>
     </ul>
   );
@@ -31,11 +34,20 @@ function Navigation() {
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
+
+  useEffect(() => {
+    function raf(time) {
+      lenis.raf(time)
+      requestAnimationFrame(raf)
+    }
+    requestAnimationFrame(raf)
+  }, [])
+
   return (
     <div className='fixed inset-x-0 z-20 w-full backdrop-blur-lg bg-primary/40'>
       <div className='mx-auto c-space max-w-7xl'>
         <div className='flex items-center justify-between py-2'>
-          <Link to='/' className='text-xl font-bold transition-colors text-neutral-400 hover:text-white' >Agnik</Link>
+          <a href='/' className='text-xl font-bold transition-colors text-neutral-400 hover:text-white' >Agnik</a>
 
 
           <button onClick={() => setIsOpen(!isOpen)}
@@ -62,7 +74,7 @@ const Navbar = () => {
           </nav>
         </motion.div>
       )}
-      
+
     </div>
   )
 }
