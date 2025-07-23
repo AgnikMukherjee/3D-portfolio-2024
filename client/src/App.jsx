@@ -6,6 +6,8 @@ import About from './components/About'
 import Projects from './components/Projects'
 import Experiences from './components/Experiences'
 import Testimonial from './components/Testimonial'
+import Contact from './components/Contact'
+import Footer from './components/Footer'
 
 const App = () => {
 
@@ -36,6 +38,8 @@ const App = () => {
       <Projects/>
       <Experiences/>
       <Testimonial/>
+      <Contact/>
+      <Footer/>
     </div>
   )
 }
