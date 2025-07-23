@@ -1,22 +1,29 @@
 "use client";
 import { useScroll, useTransform, motion } from "framer-motion";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 export const Timeline = ({ data }) => {
   const ref = useRef(null);
   const containerRef = useRef(null);
   const [height, setHeight] = useState(0);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+  const updateHeight = () => {
     if (ref.current) {
-      const rect = ref.current.getBoundingClientRect();
-      setHeight(rect.height);
+      setHeight(ref.current.offsetHeight);
     }
-  }, [ref]);
+  };
+
+  updateHeight();
+  window.addEventListener("resize", updateHeight);
+  return () => window.removeEventListener("resize", updateHeight);
+}, []);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start 10%", "end 50%"],
+    offset: typeof window !== "undefined" && window.innerWidth < 768
+  ? ["start 20%", "end 80%"]
+  : ["start 10%", "end 50%"]
   });
 
   const heightTransform = useTransform(scrollYProgress, [0, 1], [0, height]);
