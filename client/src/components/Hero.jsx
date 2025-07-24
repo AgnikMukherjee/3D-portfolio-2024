@@ -1,4 +1,5 @@
-import { Canvas, useFrame } from "@react-three/fiber";import HeroText from '../secondary-components/Herotext'
+import { Canvas, useFrame } from "@react-three/fiber";
+import HeroText from '../secondary-components/HeroText'
 import ParallaxBackground from '../secondary-components/ParallaxBackground'
 import { Astronaut } from "../secondary-components/Astronaut";
 import { Float } from "@react-three/drei";
