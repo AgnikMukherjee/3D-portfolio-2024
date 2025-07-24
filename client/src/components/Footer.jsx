@@ -4,14 +4,14 @@ const Footer = () => {
     <section className="flex flex-wrap items-center justify-between gap-5 pb-3 text-sm text-neutral-400 c-space">
       <div className="mb-4 bg-gradient-to-r from-transparent via-neutral-700 to-transparent h-[1px] w-full" />
       <div className="flex gap-2">
-        <p>Developed by Agnik Mukherjee</p>
-        <p>|</p>
-        <p>Design credit: Sanati</p>
+        <p>Developed and maintained by Agnik Mukherjee</p>
+        {/* <p>|</p>
+        <p>Designed by Sanati</p> */}
       </div>
       <div className="flex gap-3">
         {mySocials.map((social, index) => (
           <a href={social.href} key={index}>
-            <img src={social.icon} className="w-5 h-5" alt={social.name} />
+            <img src={social.icon} className={`w-5 h-5 ${social.name === 'Github' ? ' invert scale-150' : ''}`} alt={social.name} />
           </a>
         ))}
       </div>
